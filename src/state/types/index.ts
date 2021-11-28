@@ -1,0 +1,3 @@
+export enum STEPS {
+  STEPS_REQUEST = "STEPS_REQUEST",
+}
