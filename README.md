@@ -34,7 +34,7 @@ Deploy: en vercel.
 * Responsive design
 * Pruebas unitarias: Se realizaron algunas pruebas a ciertos componentes.
 * Manejo dinamico de rutas
-* Manejo dinamico de formulario
+* Manejo dinamico para mostrar la información del formulario
 
 ## Autor ✒️
 
