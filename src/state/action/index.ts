@@ -10,3 +10,12 @@ export const steps = (step: number) => {
     });
   };
 };
+
+export const ticket = (ticket: object) => {
+  return (dispatch: Dispatch<IActions>) => {
+    dispatch({
+      type: STEPS.STEPS_TICKET,
+      payload: ticket,
+    });
+  };
+};

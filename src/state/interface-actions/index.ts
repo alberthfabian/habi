@@ -5,4 +5,9 @@ export interface ISteps {
   payload: number;
 }
 
-export type IActions = ISteps;
+export interface ITicket {
+  type: STEPS.STEPS_TICKET;
+  payload: object;
+}
+
+export type IActions = ISteps | ITicket;

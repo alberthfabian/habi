@@ -19,6 +19,12 @@ const Information = lazy(
       /* webpackChunkName: "Information" */ "../../modules/apartment/pages/information"
     )
 );
+const Summary = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "Summary" */ "../../modules/apartment/pages/summary"
+    )
+);
 
 export const routes: IRoute[] = [
   {
@@ -32,5 +38,11 @@ export const routes: IRoute[] = [
     path: "datos-cliente",
     Component: Information,
     name: "Información",
+  },
+  {
+    to: "/resumen",
+    path: "resumen",
+    Component: Summary,
+    name: "Resumen",
   },
 ];

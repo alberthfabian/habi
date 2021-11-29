@@ -3,9 +3,11 @@ import { Foot, FooterMain } from "./style";
 
 const Footer = () => {
   return (
-    <FooterMain>
-      <Foot>&copy; 2021 Habi</Foot>
-    </FooterMain>
+    <div>
+      <FooterMain>
+        <Foot>&copy; 2021 Habi</Foot>
+      </FooterMain>
+    </div>
   );
 };
 

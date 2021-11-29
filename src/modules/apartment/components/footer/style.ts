@@ -12,6 +12,7 @@ export const Foot = styled.div`
   align-items: center;
   position: absolute;
   bottom: 0;
+  left: 0;
   width: 100%;
   background-color: ${lightOrange};
   height: 70px;

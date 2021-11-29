@@ -1,3 +1,4 @@
 export enum STEPS {
   STEPS_REQUEST = "STEPS_REQUEST",
+  STEPS_TICKET = "STEPS_TICKET",
 }
