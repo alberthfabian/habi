@@ -5,7 +5,7 @@ type JSXComponent = () => JSX.Element;
 export interface IRoute {
   to: string;
   path: string;
-  Component: LazyExoticComponent<JSXComponent> | JSXComponent;
+  Component: LazyExoticComponent<JSXComponent> | JSXComponent | any;
   name: string;
 }
 
@@ -26,6 +26,13 @@ const Summary = lazy(
     )
 );
 
+const Steps = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "Container" */ "../../modules/apartment/components/steps"
+    )
+);
+
 export const routes: IRoute[] = [
   {
     to: "/inicio",
@@ -35,14 +42,38 @@ export const routes: IRoute[] = [
   },
   {
     to: "/:route",
-    path: "datos-cliente",
+    path: "nombre",
     Component: Information,
     name: "Información",
   },
   {
     to: "/resumen",
-    path: "resumen",
+    path: "/resumen",
     Component: Summary,
     name: "Resumen",
+  },
+  {
+    to: "/apellido",
+    path: "/apellido",
+    Component: Information,
+    name: "Apellido",
+  },
+  {
+    to: "/correo",
+    path: "/correo",
+    Component: Information,
+    name: "Correo",
+  },
+  {
+    to: "/direccion",
+    path: "/direccion",
+    Component: Information,
+    name: "Direccion",
+  },
+  {
+    to: "/piso",
+    path: "/piso",
+    Component: Information,
+    name: "Piso",
   },
 ];

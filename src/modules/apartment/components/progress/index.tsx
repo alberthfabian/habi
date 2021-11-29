@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
-import { IInitialstate } from "../../../../state/state";
 import { ProgressBar, Div, Step } from "./style";
+import { IInitialstate } from "../../../../state/state";
+import data from "../../components/form/data/data.json";
 
 export const Progress = () => {
   const step = useSelector((state: IInitialstate) => state.steps.steps);
@@ -8,7 +9,10 @@ export const Progress = () => {
   return (
     <Div>
       <Step>{`Paso: ${valueStep !== "" ? valueStep : step}`}</Step>
-      <ProgressBar max="100" value={valueStep !== "" ? valueStep : step}>
+      <ProgressBar
+        max={data.length}
+        value={valueStep !== "" ? valueStep : step}
+      >
         {step}
       </ProgressBar>
     </Div>

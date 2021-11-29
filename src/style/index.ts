@@ -10,11 +10,17 @@ const SIZE = {
 
 export const white = "#EBEBEC";
 export const black = "#111114";
-export const brown = "#663300";
-export const brownLight = "#804000";
+export const primary = "#324873";
+export const second = "#7787A6";
+export const fourth = "#122A59";
+export const third = "#D0D0D0";
 export const blueMunsell = "#efece7";
-export const lightOrange = "#fcd7ad";
 export const blackCoffee = "#483d3f";
+export const ruby = "#d81159";
+
+// -----------------
+
+// export const blue = "#122A59";
 
 export const DEVICE = {
   mobileS: `(max-width: ${SIZE.mobileS})`,

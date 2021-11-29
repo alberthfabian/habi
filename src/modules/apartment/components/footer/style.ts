@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { lightOrange } from "../../../../style";
+import { DEVICE, second } from "../../../../style";
 
 export const FooterMain = styled.div`
   display: flex;
@@ -14,6 +14,6 @@ export const Foot = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: ${lightOrange};
+  background-color: ${second};
   height: 70px;
 `;

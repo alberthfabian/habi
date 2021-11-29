@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { black, brown, brownLight, white } from "../../../../style";
+import { black, primary, fourth, white, DEVICE } from "../../../../style";
 import { Link } from "react-router-dom";
 
 export const Hero = styled.img`
@@ -26,7 +26,7 @@ export const ContainerImg = styled.div`
 `;
 
 export const Button = styled(Link)`
-  background: ${brown};
+  background: ${primary};
   padding: 5px 12px 5px 12px;
   border-radius: 10px;
   color: ${white};
@@ -37,12 +37,19 @@ export const Button = styled(Link)`
   font-size: 30px;
   text-decoration: none;
   :hover {
-    background-color: ${brownLight};
+    background-color: ${fourth};
   }
 `;
 
 export const Title = styled.div`
   font-size: 50px;
+  text-align: center;
   margin-bottom: 40px;
   color: ${black};
+  @media ${DEVICE.mobileS} {
+    font-size: 25px;
+  }
+  @media ${DEVICE.mobileM} {
+    font-size: 30px;
+  }
 `;

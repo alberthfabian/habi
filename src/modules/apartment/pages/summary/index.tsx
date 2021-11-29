@@ -1,25 +1,52 @@
 import { useSelector } from "react-redux";
-import data from "../../components/form/data/data.json";
+import { useNavigate } from "react-router";
 import { IInitialstate } from "../../../../state/state";
-import { Ticket, Title, Info } from "./style";
+import data from "../../components/form/data/data.json";
+import {
+  Ticket,
+  Title,
+  Info,
+  Div,
+  Main,
+  Container,
+  ContainerButton,
+  Button,
+} from "./style";
 
-export const Summary = () => {
+interface IOption {
+  setIsOpen?: Function;
+}
+
+export const Summary = ({ setIsOpen }: IOption) => {
+  const navigate = useNavigate();
   const ticketValues: any = useSelector(
     (state: IInitialstate) => state.ticket.ticket
   );
 
+  const returnHome = () => {
+    if (setIsOpen) setIsOpen(false);
+    navigate("/inicio");
+  };
+
   return (
-    <div>
-      <div>Resumen</div>
-      {data.map((value) => (
-        <Ticket key={value.label}>
-          <div>
-            <Title>{value.label}</Title>
-            <Info>{ticketValues[value.name]}</Info>
-          </div>
-        </Ticket>
-      ))}
-    </div>
+    <Div>
+      <div style={{ height: "100%" }}>
+        <Container>
+          <Main>Resumen</Main>
+          {data.map((value) => (
+            <Ticket key={value.label}>
+              <div>
+                <Title>{value.label}</Title>
+                <Info>{ticketValues[value.name]}</Info>
+              </div>
+            </Ticket>
+          ))}
+        </Container>
+        <ContainerButton>
+          <Button onClick={returnHome}>Regresar al Inicio</Button>
+        </ContainerButton>
+      </div>
+    </Div>
   );
 };
 

@@ -1,5 +1,10 @@
 import { ErrorMessage, useField } from "formik";
-import { ContainerLabel, ContainerSelect, Error, SelectValue } from "./style";
+import {
+  ContainerLabelSelect,
+  ContainerSelect,
+  Error,
+  SelectValue,
+} from "./style";
 
 interface Props {
   label: string;
@@ -11,14 +16,18 @@ interface Props {
 export const Select = ({ label, options, ...props }: Props) => {
   const [field] = useField(props);
   return (
-    <div>
-      <ContainerLabel>
-        <label htmlFor={props.name}>{label}</label>
-      </ContainerLabel>
+    <div style={{ width: "100%" }}>
+      <ContainerLabelSelect>
+        <label htmlFor={props.name}>
+          <b>{label}</b>
+        </label>
+      </ContainerLabelSelect>
       <ContainerSelect>
-        <div>
+        <div style={{ width: "100%" }}>
           <SelectValue {...field} {...props}>
-            <option value="">Seleccione una opción</option>
+            <option style={{ width: "100%" }} value="">
+              Seleccione una opción
+            </option>
             {options?.map((opt: any) => (
               <option key={opt.id} value={opt.label}>
                 {opt.label}

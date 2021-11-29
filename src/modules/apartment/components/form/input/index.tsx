@@ -1,5 +1,12 @@
 import { ErrorMessage, useField } from "formik";
-import { ContainerInput, ContainerLabel, InputStyle, Error } from "./style";
+import {
+  ContainerInput,
+  ContainerLabel,
+  InputStyle,
+  Error,
+  DivInput,
+  DivContainer,
+} from "./style";
 
 interface Props {
   label: string;
@@ -15,17 +22,19 @@ export const Input = ({ label, ...props }: Props) => {
   return (
     <div>
       <ContainerLabel>
-        <label htmlFor={props.id || props.name}>{label}</label>
+        <label htmlFor={props.id || props.name}>
+          <b>{label}</b>
+        </label>
       </ContainerLabel>
       <ContainerInput>
-        <div>
-          <div>
+        <DivContainer>
+          <DivInput>
             <InputStyle {...field} {...props} />
-          </div>
+          </DivInput>
           <Error>
             <ErrorMessage name={props.name} component="span" />
           </Error>
-        </div>
+        </DivContainer>
       </ContainerInput>
     </div>
   );

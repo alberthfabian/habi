@@ -1,8 +1,23 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
-import Control from "../../components/form/control";
+import { ContainerPage } from "../containerPage";
+import { useEffect, useState } from "react";
 import data from "../../components/form/data/data.json";
-import { ContaninerInfo, InputControl, Info, Button } from "./style";
+import {
+  ContaninerInfo,
+  InputControl,
+  Info,
+  For,
+  Button,
+  ButtonLink,
+  ButtonContainer,
+} from "./style";
+import "./styles.css";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../../../../state";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 
 const initialValues: { [key: string]: any } = {};
 const requiredFields: { [key: string]: any } = {};
@@ -33,52 +48,96 @@ for (const input of data) {
 
 const validationSchema = Yup.object({ ...requiredFields });
 
-export const Steps = ({ valueInput, sendTicket }: any) => {
+export const Steps = ({ valueInput, sendTicket, valueInfo }: any) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { steps } = bindActionCreators(actionCreators, dispatch);
+  const [newData, setNewData] = useState<any>([]);
+  const [newPath, setNewPath] = useState<any>([]);
+
+  const order = localStorage.getItem("step") || "";
+
+  const valueCant: any = [];
+
+  useEffect(() => {
+    for (const info of data) {
+      if (parseInt(info.order) <= parseInt(order)) {
+        const dataInfo = info;
+        valueCant.push(dataInfo);
+      }
+      if (
+        parseInt(order) <= data.length &&
+        parseInt(info.order) === parseInt(order) + 1
+      ) {
+        const dataInfo = info;
+        setNewPath([dataInfo]);
+      }
+    }
+    setNewData(valueCant);
+    localStorage.setItem("new", JSON.stringify(valueCant));
+  }, [order]);
+
+  let value: any = localStorage.getItem("new");
+  let newValue: any = JSON.parse(value);
+
+  const check = () => {
+    steps(1);
+    navigate(newPath[0].path);
+  };
+
   return (
     <ContaninerInfo>
       <Info>
-        <div>
-          <h1>Dynamic Form</h1>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={(values) => {
-              sendTicket(values);
-            }}
-            validate={(values) => {
-              valueInput(values);
-            }}
-          >
-            {(formik) => (
-              <Form noValidate>
-                <InputControl>
-                  {data.map(({ type, name, placeholder, label, options }) => (
-                    <div>
-                      <Control
-                        key={name}
-                        type={type as any}
-                        name={name}
-                        label={label}
-                        placeholder={placeholder}
-                        options={options}
-                      />
-                      <br />
-                    </div>
-                  ))}
-                </InputControl>
-                <div>
-                  <div>
-                    <Button type="button">Siguiente</Button>
-                  </div>
-                  <div>
-                    <Button type="submit">Enviar datos</Button>
-                  </div>
-                </div>
-              </Form>
-            )}
-          </Formik>
-        </div>
+        <For>
+          <h1>Formulario de registro</h1>
+          {newData.length !== 0 && newValue && (
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={(values) => {
+                sendTicket(values);
+              }}
+              validate={(values) => {
+                valueInput(values);
+              }}
+            >
+              {(formik) => (
+                <Form noValidate>
+                  <InputControl>
+                    {newValue.map(
+                      ({ type, name, placeholder, label, options }: any) => (
+                        <ContainerPage
+                          type={type}
+                          name={name}
+                          placeholder={placeholder}
+                          label={label}
+                          options={options}
+                        />
+                      )
+                    )}
+                  </InputControl>
+                  <ButtonContainer>
+                    {parseInt(order) < data.length && (
+                      <div>
+                        <Button onClick={() => check()} type="submit">
+                          Siguiente
+                        </Button>
+                      </div>
+                    )}
+                    {data.length === parseInt(order) && (
+                      <div>
+                        <Button type="submit">Enviar datos</Button>
+                      </div>
+                    )}
+                  </ButtonContainer>
+                </Form>
+              )}
+            </Formik>
+          )}
+        </For>
       </Info>
     </ContaninerInfo>
   );
 };
+
+export default Steps;
