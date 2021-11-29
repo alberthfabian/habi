@@ -27,11 +27,14 @@ Deploy: en vercel.
 * Styled Components
 * React Router
 * Redux
+* Formik
 
 ----------
 
 * Responsive design
 * Pruebas unitarias: Se realizaron algunas pruebas a ciertos componentes.
+* Manejo dinamico de rutas
+* Manejo dinamico de formulario
 
 ## Autor ✒️
 
