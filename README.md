@@ -27,11 +27,15 @@ Deploy: en vercel.
 * Styled Components
 * React Router
 * Redux
+* React Thunk: Aunque no fue necesario lo instale y configure en caso de ser necesario para realizar peticiones a endpoint
+* Formik
 
 ----------
 
 * Responsive design
 * Pruebas unitarias: Se realizaron algunas pruebas a ciertos componentes.
+* Manejo dinámico de rutas
+* Manejo dinámico para mostrar la información del formulario
 
 ## Autor ✒️
 
